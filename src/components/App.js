@@ -6,10 +6,6 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 import './App.css';
 
-import Todos from './Todos';
-
-import Emps from './Emp/Emps';
-
  
 
 export default class App extends React.Component {
@@ -198,11 +194,11 @@ export default class App extends React.Component {
 
           { /* Each Smaller Components */}
 
-           {appState.mappedShowTodos && <Todos /> }
+           {/*{appState.mappedShowTodos && <Todos /> }*/}
 
            {this.props.children}
 
-          {appState.mappedShowEmps && <Emps />}
+          {/*{appState.mappedShowEmps && <Emps />}*/}
 
         </div>
 
