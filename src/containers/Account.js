@@ -15,7 +15,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     //you can now say this.props.mappedAppActions
-    mappedfetchEmpById: AccountId => dispatch(accountActions.fetchEmpById(AccountId))
+    mappedfetchAccountById: AccountId => dispatch(accountActions.fetchAccountById(AccountId))
   }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(Account);

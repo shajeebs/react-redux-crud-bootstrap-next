@@ -2,7 +2,7 @@ const INITIAL_STATE = { pocos:[], poco:null, isFetching: false,
   error: null, successMsg:null, pocoToDelete: null, showEditModal: false, pocoToEdit: null, newEmp: null, showDeleteModal: false
 }
  
-export const AccountReducer = (currentState = INITIAL_STATE, action) => {
+export const accountReducer = (currentState = INITIAL_STATE, action) => {
   switch(action.type) {      case 'SHOW_ADD_MODAL': return {...currentState, pocos:currentState.pocos, poco:null,
         isFetching:false, error:null, successMsg:null, showDeleteModal:false, pocoToDelete:null, showViewModal:false, pocoToView:null, showEditModal:true, pocoToEdit:null, newEmp: null}
       case 'HIDE_ADD_MODAL': return {...currentState, pocos:currentState.pocos, poco:null,

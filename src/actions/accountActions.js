@@ -10,7 +10,7 @@ export const addNewAccount = (inData) => {
     }).then(resp => {//console.log(resp);
       if(resp.ok){
         resp.json().then(data => { //console.log(data);
-          dispatch(addNewAccountSuccess(data.Accountloyee, data.message));
+          dispatch(addNewAccountSuccess(data, "data.message"));
         })
       } else {
         resp.json().then(err => {
@@ -28,7 +28,7 @@ export const fetchAccounts = () => {
     dispatch(fetchAccountsRequest());
     return fetch(apiUrl).then(resp => {//console.log(resp);
       if(resp.ok){
-        resp.json().then(data => {//console.log(data);
+        resp.json().then(data => {console.log(data);
           dispatch(fetchAccountsSuccess(data , "Account fetched successfully...!"));
         })
       } else {
