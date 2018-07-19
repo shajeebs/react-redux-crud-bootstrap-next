@@ -1,7 +1,5 @@
 const apiUrl = "http://localhost:3033/Account";
-
  
-
 export const addNewAccount = (inData) => {
   //console.log(inData);
   return (dispatch) => {
@@ -25,8 +23,6 @@ export const addNewAccount = (inData) => {
 export const addNewAccountRequest = (inData) => { return{ type:'ADD_POCO_REQUEST', inData } }
 export const addNewAccountSuccess = (inData, msg) => { return{ type:'ADD_POCO_SUCCESS', emp:inData, message: msg } }
 export const addNewAccountFailed = (err) => { return{ type:'ADD_POCO_FAILED', err } }
-
-
 export const fetchAccounts = () => {
   return (dispatch) => {
     dispatch(fetchAccountsRequest());
@@ -67,7 +63,6 @@ export const fetchAccountRequest = () => { return{ type:'FETCH_POCO_REQUEST' } }
 export const fetchAccountSuccess = (inData, msg) => { return{type: 'FETCH_POCO_SUCCESS', emp: inData, message: msg, receivedAt: Date.now } }
 export const fetchAccountFailed = (err) => { return{ type:'FETCH_POCO_FAILED', err } }
  
-
 export const editAccount = (inData) => {
   return (dispatch) => {
     dispatch(editAccountRequest(inData));
@@ -87,11 +82,9 @@ export const editAccount = (inData) => {
     });
   }
 }
-
 export const editAccountRequest = (inData) => { return{ type: 'EDIT_POCO_REQUEST', inData } }
 export const editAccountSuccess = (inData, msg) => { return{ type: 'EDIT_POCO_SUCCESS', emp: inData, message: msg } }
 export const editAccountFailed = (err) => { return{ type:'EDIT_POCO_FAILED', err } }
-
 export const deleteAccount = (inData) => {
   return (dispatch) => {
     dispatch(deleteAccountRequest(inData));
@@ -114,9 +107,7 @@ export const deleteAccount = (inData) => {
 export const deleteAccountRequest = (inData) => { return{ type: 'DELETE_POCO_REQUEST', inData } }
 export const deleteAccountSuccess = (msg) => { return{ type: 'DELETE_POCO_SUCCESS', message: msg } }
 export const deleteAccountFailed = (err) => { return{ type:'DELETE_POCO_FAILED', err } }
-
  
-
 export const showAddModal = () => { return { type: 'SHOW_ADD_MODAL', emp: null } }
 export const hideAddModal = () => { return { type: 'HIDE_ADD_MODAL' } }
 export const showViewModal = (inData) => { return { type: 'SHOW_VIEW_MODAL', emp: inData } }
@@ -125,4 +116,3 @@ export const showEditModal = (inData) => { return { type: 'SHOW_EDIT_MODAL', emp
 export const hideEditModal = () => { return { type: 'SHOW_EDIT_MODAL' } }
 export const showDeleteModal = (inData) => { return{ type:'SHOW_DELETE_MODAL', emp: inData } }
 export const hideDeleteModal = () => { return{ type: 'HIDE_DELETE_MODAL' } }
-

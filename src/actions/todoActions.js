@@ -11,8 +11,6 @@ export const toggleAddBook = () => {
 export const addNewTodo = (todo) => {console.log(todo)
   return (dispatch) => {
     dispatch(addNewTodoRequest(todo));
-    console.log(todo.todoText);
-    console.log(todo.todoDesc);
     console.log(todo);
     return fetch(apiUrl, {
       method:'post',
