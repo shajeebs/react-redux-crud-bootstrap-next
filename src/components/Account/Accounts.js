@@ -221,7 +221,7 @@ export default class Accounts extends React.Component {
     {/* Modal for View */}
     <Modal show={pocoState.showViewModal} onHide={this.props.mappedhideViewModal} container={this} aria-labelledby="contained-modal-title">
       <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title">Accountloyee Details</Modal.Title>
+        <Modal.Title id="contained-modal-title">Account Details</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <div className="col-md-12">

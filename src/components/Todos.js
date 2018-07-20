@@ -77,7 +77,7 @@ export default class Todos extends React.Component {
         <td>{todo.todoText}</td>
          <td className="textCenter"><Button onClick={() => this.showEditModal(todo)} bsStyle="info" bsSize="xsmall"><Glyphicon glyph="pencil" /></Button></td>
          <td className="textCenter"><Button onClick={() => this.showDeleteModal(todo)} bsStyle="danger" bsSize="xsmall"><Glyphicon glyph="trash" /></Button></td>
-         <td className="textCenter"><Link to={`/${todo._id}`}>View Details</Link> </td>
+         <td className="textCenter"><Link to={`todo/${todo._id}`}>View Details</Link> </td>
          </tr> )
       }
       </tbody>
