@@ -1,4 +1,3 @@
-// ./react-redux-client/src/reducers/todoReducer.js
 const INITIAL_STATE = {
   todos:[],
   todo:null,
@@ -9,9 +8,10 @@ const INITIAL_STATE = {
   todoToDelete: null,
   showEditModal: false,
   todoToEdit: null,
-  newTodo: null
+  newTodo: null,showViewModal: false, pocoToView: null,
+ 
 }
-
+ 
 export  const todoReducer = (currentState = INITIAL_STATE, action) => {
   switch (action.type) {
     case 'FETCH_TODOS_REQUEST':
@@ -25,9 +25,9 @@ export  const todoReducer = (currentState = INITIAL_STATE, action) => {
             showDeleteModal: false,
             todoToDelete: null,
             showEditModal: false,
-            todoToEdit: null,
+            todoToEdit: null,showViewModal: false, pocoToView: null,
           }
-
+ 
     case 'FETCH_TODOS_SUCCESS':
           return {
             ...currentState,
@@ -39,9 +39,9 @@ export  const todoReducer = (currentState = INITIAL_STATE, action) => {
             showDeleteModal: false,
             todoToDelete: null,
             showEditModal: false,
-            todoToEdit: null,
+            todoToEdit: null,showViewModal: false, pocoToView: null,
           }
-
+ 
     case 'FETCH_TODOS_FAILED':
           return {
             ...currentState,
@@ -53,9 +53,9 @@ export  const todoReducer = (currentState = INITIAL_STATE, action) => {
             showDeleteModal: false,
             todoToDelete: null,
             showEditModal: false,
-            todoToEdit: null,
+            todoToEdit: null,showViewModal: false, pocoToView: null,
           }
-
+ 
     case 'FETCH_TODO_REQUEST':
           return {
             ...currentState,
@@ -67,9 +67,9 @@ export  const todoReducer = (currentState = INITIAL_STATE, action) => {
             showDeleteModal: false,
             todoToDelete: null,
             showEditModal: false,
-            todoToEdit: null,
+            todoToEdit: null,showViewModal: false, pocoToView: null,
           }
-
+ 
     case 'FETCH_TODO_SUCCESS':
           return {
             ...currentState,
@@ -81,9 +81,9 @@ export  const todoReducer = (currentState = INITIAL_STATE, action) => {
             showDeleteModal: false,
             todoToDelete: null,
             showEditModal: false,
-            todoToEdit: null,
+            todoToEdit: null,showViewModal: false, pocoToView: null,
           }
-
+ 
     case 'FETCH_TODO_FAILED':
           return {
             ...currentState,
@@ -95,14 +95,14 @@ export  const todoReducer = (currentState = INITIAL_STATE, action) => {
             showDeleteModal: false,
             todoToDelete: null,
             showEditModal: false,
-            todoToEdit: null,
+            todoToEdit: null,showViewModal: false, pocoToView: null,
           }
-
+ 
     case 'ADD_NEW_TODO_REQUEST':
           return {
             ...currentState,
             todos:currentState.todos,
-            todo:null,
+           todo:null,
             isFetching: true,
             error: null,
             successMsg:null,
@@ -110,9 +110,9 @@ export  const todoReducer = (currentState = INITIAL_STATE, action) => {
             todoToDelete: null,
             showEditModal: false,
             todoToEdit: null,
-            newTodo: action.todo
+            newTodo: action.todo,showViewModal: false, pocoToView: null,
           }
-
+ 
     case 'ADD_NEW_TODO_REQUEST_FAILED':
           return {
             ...currentState,
@@ -125,9 +125,9 @@ export  const todoReducer = (currentState = INITIAL_STATE, action) => {
             todoToDelete: null,
             showEditModal: false,
             todoToEdit: null,
-            newTodo: null
+            newTodo: null ,showViewModal: false, pocoToView: null,
           }
-
+ 
     case 'ADD_NEW_TODO_REQUEST_SUCCESS':
           const nextState =  {
             ...currentState,
@@ -140,10 +140,10 @@ export  const todoReducer = (currentState = INITIAL_STATE, action) => {
             todoToDelete: null,
             showEditModal: false,
             todoToEdit: null,
-            newTodo: action.todo
+            newTodo: action.todo,showViewModal: false, pocoToView: null,
           }
         return nextState;
-
+ 
   case 'SHOW_EDIT_MODAL':
         return {
           ...currentState,
@@ -156,9 +156,9 @@ export  const todoReducer = (currentState = INITIAL_STATE, action) => {
           todoToDelete: null,
           showEditModal: true,
           todoToEdit: action.todo,
-          newTodo: null
+          newTodo: null,showViewModal: false, pocoToView: null,
         }
-
+ 
   case 'HIDE_EDIT_MODAL':
         return {
           ...currentState,
@@ -171,9 +171,9 @@ export  const todoReducer = (currentState = INITIAL_STATE, action) => {
           todoToDelete: null,
           showEditModal: false,
           todoToEdit: null,
-          newTodo: null
+          newTodo: null,showViewModal: false, pocoToView: null,
         }
-
+ 
     case 'EDIT_TODO_REQUEST':
           return {
             ...currentState,
@@ -186,9 +186,9 @@ export  const todoReducer = (currentState = INITIAL_STATE, action) => {
             todoToDelete: null,
             showEditModal: true,
             todoToEdit: action.todo,
-            newTodo: null
+            newTodo: null,showViewModal: false, pocoToView: null,
           }
-
+ 
     case 'EDIT_TODO_SUCCESS':
          const updatedTodos = currentState.todos.map((todo) => {
            if(todo._id !== action.todo._id){
@@ -209,9 +209,9 @@ export  const todoReducer = (currentState = INITIAL_STATE, action) => {
             todoToDelete: null,
             showEditModal: true,
             todoToEdit: action.todo,
-            newTodo: null
+            newTodo: null,showViewModal: false, pocoToView: null,
           }
-
+ 
   case 'EDIT_TODO_FAILED':
         return {
           ...currentState,
@@ -224,9 +224,9 @@ export  const todoReducer = (currentState = INITIAL_STATE, action) => {
           todoToDelete: null,
           showEditModal: true,
           todoToEdit: currentState.todoToEdit,
-          newTodo: null
+          newTodo: null,showViewModal: false, pocoToView: null,
         }
-
+ 
   case 'DELETE_TODO_REQUEST':
         return {
           ...currentState,
@@ -239,9 +239,9 @@ export  const todoReducer = (currentState = INITIAL_STATE, action) => {
           todoToDelete: action.todo,
           showEditModal: false,
           todoToEdit: null,
-          newTodo: null
+          newTodo: null,showViewModal: false, pocoToView: null,
         }
-
+ 
   case 'DELETE_TODO_SUCCESS':
   const filteredTodos = currentState.todos.filter((todo) => todo._id !== currentState.todoToDelete._id)
         return {
@@ -255,10 +255,9 @@ export  const todoReducer = (currentState = INITIAL_STATE, action) => {
           todoToDelete: null,
           showEditModal: false,
           todoToEdit: null,
-          newTodo: null
+          newTodo: null,showViewModal: false, pocoToView: null,
         }
-
-
+ 
   case 'DELETE_TODO_FAILED':
         return {
           ...currentState,
@@ -271,9 +270,9 @@ export  const todoReducer = (currentState = INITIAL_STATE, action) => {
           todoToDelete: null,
           showEditModal: false,
           todoToEdit: null,
-          newTodo: null
+          newTodo: null,showViewModal: false, pocoToView: null,
         }
-
+ 
   case 'SHOW_DELETE_MODAL':
         return {
           ...currentState,
@@ -286,9 +285,9 @@ export  const todoReducer = (currentState = INITIAL_STATE, action) => {
           todoToDelete: action.todo,
           showEditModal: false,
           todoToEdit: null,
-          newTodo: null
+          newTodo: null,showViewModal: false, pocoToView: null,
         }
-
+ 
   case 'HIDE_DELETE_MODAL':
         return {
           ...currentState,
@@ -301,12 +300,37 @@ export  const todoReducer = (currentState = INITIAL_STATE, action) => {
           todoToDelete: null,
           showEditModal: false,
           todoToEdit: null,
-          newTodo: null
+          newTodo: null,showViewModal: false, pocoToView: null,
         }
-
-
+  case 'SHOW_VIEW_MODAL':
+      return {
+        ...currentState,
+        todos:currentState.todos,
+        todo:null,
+        isFetching: false,
+        error: null,
+        successMsg:null,
+        showDeleteModal: false,
+        todoToDelete: null,
+        showEditModal: false,
+        todoToEdit: null,
+        newTodo: null,showViewModal: true, pocoToView: action.poco,
+      }
+  case 'HIDE_VIEW_MODAL': return {
+    ...currentState,
+    todos:currentState.todos,
+    todo:null,
+    isFetching: false,
+    error: null,
+    successMsg:null,
+    showDeleteModal: false,
+    todoToDelete: null,
+    showEditModal: false,
+    todoToEdit: null,
+    newTodo: null,showViewModal: false, pocoToView: null,
+  }
     default:
        return currentState;
-
+ 
   }
 }

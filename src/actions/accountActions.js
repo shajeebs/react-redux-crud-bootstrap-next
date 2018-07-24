@@ -1,4 +1,4 @@
-const apiUrl = "http://localhost:3033/Account";
+const apiUrl = "https://nodesmallapp.herokuapp.com/Account";
  
 export const addNewAccount = (inData) => {
   //console.log(inData);

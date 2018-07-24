@@ -2,7 +2,6 @@ import React from 'react';
 import { Navbar,Nav,NavItem, MenuItem, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import './App.css';
- 
 export default class App extends React.Component {
   constructor(props){
     super(props);
@@ -10,17 +9,14 @@ export default class App extends React.Component {
     // this.toggleShowEmps = this.toggleShowEmps.bind(this);
     //this.addTodo = this.addTodo.bind(this);
   }
- 
   // toggleAddTodo(e){
   //   e.preventDefault();
   //    this.props.mappedToggleAddTodo();
   // }
- 
   // toggleShowEmps(e){
   //   e.preventDefault();
   //    this.props.mappedShowEmps();
   // }
- 
   // addTodo(e){
   //     e.preventDefault();
   //   //alert('AddForm addTodo');
@@ -40,7 +36,6 @@ export default class App extends React.Component {
   //       return ;
   //     }
   // }
- 
   render(){
     const appState = this.props.mappedAppState;
     return(
@@ -54,20 +49,14 @@ export default class App extends React.Component {
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav>
-              {/* <NavItem eventKey={1} href="/todo">
-                Empoyees
-              </NavItem>
-              <NavItem eventKey={2} href="/todo">
-                Todos
-              </NavItem> */}
               <NavDropdown eventKey={3} title="Features" id="basic-nav-dropdown">
                 <MenuItem eventKey={3.1}>
                   <LinkContainer to="/todo">
                     <NavItem eventKey={1}>Todos</NavItem>
                   </LinkContainer>
                 </MenuItem>
-                <MenuItem eventKey={3.2} to="/emps"><LinkContainer to="/emp">
-                    <NavItem eventKey={1}>Employees</NavItem>
+                <MenuItem eventKey={3.2}><LinkContainer to="/account">
+                    <NavItem eventKey={1}>Accounts</NavItem>
                   </LinkContainer></MenuItem>
                 <MenuItem eventKey={3.3}>Something else here</MenuItem>
                 <MenuItem divider />
@@ -78,22 +67,14 @@ export default class App extends React.Component {
               <LinkContainer to="/todo">
                     <NavItem eventKey={1}>Todos</NavItem>
                   </LinkContainer>
-                  <LinkContainer to="/emp">
-                    <NavItem eventKey={1}>Employees</NavItem>
-                  </LinkContainer>
                   <LinkContainer to="/account">
                     <NavItem eventKey={1}>Accounts</NavItem>
                   </LinkContainer>
-              {/* <LinkContainer to={{ pathname: '/', query: {  } }} onClick={this.props.mappedShowTodos}>
-                <NavItem eventKey={1}>Show Todos</NavItem>
-              </LinkContainer>
-              <LinkContainer to={{ pathname: '/', query: {  } }} onClick={this.props.mappedShowEmps}>
-                <NavItem eventKey={1}>Fetch Employees</NavItem>
-              </LinkContainer> */}
             </Nav>
           </Navbar.Collapse>
         </Navbar>
         <div className="container">
+        {/* {console.log(this.props)} */}
           {/* {appState.showAddTodo && <TodoForm addTodo={this.addTodo} /> } */}
           { /* Each Smaller Components */}
            {/*{appState.mappedShowTodos && <Todos /> }*/}
@@ -101,6 +82,6 @@ export default class App extends React.Component {
           {/*{appState.mappedShowEmps && <Emps />}*/}
         </div>
     </div>
-    );
+   );
   }
 }

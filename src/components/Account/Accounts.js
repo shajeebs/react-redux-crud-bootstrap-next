@@ -3,7 +3,6 @@ import { Alert,Glyphicon,Button,Modal } from 'react-bootstrap';
 import { Link } from 'react-router';
 import EditForm from './EditForm';
 //import AddForm from './AddForm';
- 
 export default class Accounts extends React.Component {
   constructor(props){
     super(props);
@@ -14,29 +13,23 @@ export default class Accounts extends React.Component {
     this.cofirmDelete = this.cofirmDelete.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
- 
   componentWillMount(){
     this.props.fetchAccounts();
   }
- 
   showAddModal(){
       this.props.mappedshowAddModal();
      //this.props.mappedshowEditModal(null);
   }
- 
   // showEditModal(dataToEdit){
   //    this.props.mappedshowEditModal(dataToEdit);
   // }
- 
   hideEditModal(){
      this.props.mappedhideEditModal();
      this.props.mappedhideAddModal();
   }
- 
   submitEdit(e){
     e.preventDefault();
     console.log(this.state);
- 
     const editForm = document.getElementById('EditForm');
     if(editForm.Username.value !== ""){
       //console.log(editForm.Firstname.value);
@@ -48,7 +41,6 @@ export default class Accounts extends React.Component {
       pocodata.append('Lastname', editForm.Lastname.value);
       pocodata.append('Age', editForm.Age.value);
       pocodata.append('Desc', editForm.Desc.value);
- 
       //  const pocodata = {
       //     _id: editForm._id.value,
       //     Username: editForm.Username.value,
@@ -58,16 +50,15 @@ export default class Accounts extends React.Component {
       //     Desc: editForm.Desc.value
       //   };
      //console.log(pocodata);
-     //debugger;
+     debugger;
+     console.log(pocodata);
     this.props.mappedEditAccount(pocodata);
     //this.hideEditModal();
     }
     else{
       return;
     }
- 
   }
- 
   addAccount(e){
     e.preventDefault();
     const form = document.getElementById('EditForm');
@@ -83,6 +74,8 @@ export default class Accounts extends React.Component {
       //   todoText: form.todoText.value,
       //   todoDesc: form.todoDesc.value
       // }
+      debugger;
+      console.log(data);
       this.props.mappedAddNewAccount(data);
       //form.reset();
     }
@@ -90,26 +83,21 @@ export default class Accounts extends React.Component {
       return ;
     }
   }
- 
   hideDeleteModal(){
     this.props.mappedhideDeleteModal();
   }
- 
   // showDeleteModal(dataToDelete){
   //   this.props.mappedshowDeleteModal(dataToDelete);
   // }
- 
   cofirmDelete(){
     this.props.mappedDeleteAccount(this.props.mappedPocoState.pocoToDelete);
   }
- 
   handleChange (evt) {
     this.setState({ [evt.target.name]: evt.target.value });
   }
- 
   render(){
     const pocoState = this.props.mappedPocoState;
-    //console.log(pocoState);
+   //console.log(pocoState);
     const pocos = pocoState.pocos;
     //const editAccount = pocoState.pocoToEdit;
     //console.log(pocos);
@@ -145,11 +133,10 @@ export default class Accounts extends React.Component {
       </tbody>
       </table>
     }
- 
     {/* Modal for Editing */}
     <Modal show={pocoState.showEditModal} onHide={this.hideEditModal} container={this} aria-labelledby="contained-modal-title">
       <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title">Add/Edit Accountloyee</Modal.Title>
+        <Modal.Title id="contained-modal-title">Add/Edit Account</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <div className="col-md-12">
@@ -168,7 +155,7 @@ export default class Accounts extends React.Component {
         }
         {pocoState.pocoToEdit  && !pocoState.isFetching && pocoState.successMsg &&
           <Alert bsStyle="success">
-            Book <strong> {pocoState.pocoToEdit.Username} </strong>{pocoState.successMsg}
+            Book <strong> {pocoState.pocoToEdit.AccountName} </strong>{pocoState.successMsg}
           </Alert>
         }
         </div>
@@ -177,7 +164,6 @@ export default class Accounts extends React.Component {
         <Button onClick={this.hideEditModal}>Close</Button>
       </Modal.Footer>
     </Modal>
- 
     {/* Modal for Deleting */}
     <Modal show={pocoState.showDeleteModal} onHide={this.props.mappedhideDeleteModal} container={this} aria-labelledby="contained-modal-title">
       <Modal.Header closeButton>
@@ -217,7 +203,6 @@ export default class Accounts extends React.Component {
       }
       </Modal.Footer>
     </Modal>
- 
     {/* Modal for View */}
     <Modal show={pocoState.showViewModal} onHide={this.props.mappedhideViewModal} container={this} aria-labelledby="contained-modal-title">
       <Modal.Header closeButton>
@@ -230,11 +215,11 @@ export default class Accounts extends React.Component {
            {/* <button className="btn btn-info">
               <span className="glyphicon glyphicon-arrow-left"></span> Back to Main list
             </button> */}
-           <h3>{pocoState.pocoToView.Username}</h3>
-           <p>{pocoState.pocoToView.Firstname}</p>
-           <p>{pocoState.pocoToView.Lastname}</p>
-           <p>{pocoState.pocoToView.Age}</p>
-           <p>{pocoState.pocoToView.Desc}</p>
+           <h3>{pocoState.pocoToView.AccountCode}</h3>
+           <p>{pocoState.pocoToView.AccountName}</p>
+           <p>{pocoState.pocoToView.Balance}</p>
+           <p>{pocoState.pocoToView.DebitBalance}</p>
+           <p>{pocoState.pocoToView.CreditBalance}</p>
          </div>
        }
         {pocoState.pocoToView  && pocoState.isFetching &&
@@ -258,7 +243,6 @@ export default class Accounts extends React.Component {
         <Button onClick={this.props.mappedhideViewModal}>Close</Button>
       </Modal.Footer>
     </Modal>
- 
     </div>
     );
   }

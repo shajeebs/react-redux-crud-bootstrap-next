@@ -1,6 +1,6 @@
 // ./react-redux-client/src/actions/todoActions.js
 
-const apiUrl = "http://localhost:3033/todonew";
+const apiUrl = "https://nodesmallapp.herokuapp.com/todonew";
 
 export const toggleAddBook = () => {
   return {

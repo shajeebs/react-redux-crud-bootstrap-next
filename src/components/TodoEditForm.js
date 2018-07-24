@@ -1,18 +1,18 @@
-// ./react-redux-client/src/components/TodoEditForm.js
 import React from 'react';
+//import { Field, reduxForm } from 'redux-form';
+ 
 import { FormGroup,ControlLabel,FormControl,Button } from 'react-bootstrap';
-
 const TodoEditForm = (props) => {
   return (
-    <form className="form form-horizontal" id="EditTodoForm" onSubmit={props.editTodo}>
+    <form className="form form-horizontal" id="EditTodoForm" onSubmit={props.submitEditTodo}>
     <div className="row">
     <div className="col-md-12">
     <FormGroup>
           <ControlLabel>Todo: </ControlLabel>
           <input type="hidden" value={props.todoData._id} name="id"/>
-            <FormControl
+            <FormControl onChange={props.todoData.name}
               type="text" placeholder="Enter todo"
-              name="todoText" defaultValue={props.todoData.todoText}
+              name="name" defaultValue={props.todoData.name}
                />
         </FormGroup>
         </div>
@@ -20,8 +20,8 @@ const TodoEditForm = (props) => {
         <FormGroup>
               <ControlLabel>Description: </ControlLabel>
                 <FormControl
-                  componentClass="textarea" placeholder="Enter description"
-                  name="todoDesc" defaultValue={props.todoData.todoDesc}
+                  componentClass="textarea" placeholder="Enter description" onChange={props.todoData.comment}
+                  name="comment" defaultValue={props.todoData.comment}
                    />
             </FormGroup>
             </div>
@@ -32,5 +32,5 @@ const TodoEditForm = (props) => {
     </form>
   );
 }
-
+ 
 export default TodoEditForm;
