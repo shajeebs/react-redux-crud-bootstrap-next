@@ -88,12 +88,16 @@ export default class Todos extends React.Component {
       <thead>
       <tr><th colSpan="5"><Button onClick={() => this.showEditModal()} bsStyle="primary" bsSize="xsmall">
        <Glyphicon glyph="plus"/> Add New Item</Button></th></tr>
-       <tr><th>Todo</th><th>Comment</th><th className="textCenter">Edit</th><th className="textCenter">Delete</th><th className="textCenter">View</th></tr>
+       <tr><th>Id</th><th>Todo</th><th>Comment</th><th>Modified</th><th>Created</th>
+       <th className="textCenter">Edit</th><th className="textCenter">Delete</th><th className="textCenter">View</th></tr>
       </thead>
       <tbody>
         {todos.map((todo,i) => <tr key={i}>
+        <td>{todo._id}</td>
         <td>{todo.name}</td>
         <td>{todo.comment}</td>
+        <td>{todo.modified}</td>
+        <td>{todo.created}</td>
          <td className="textCenter"><Button onClick={() => this.showEditModal(todo)} bsStyle="info" bsSize="xsmall"><Glyphicon glyph="pencil" /></Button></td>
          <td className="textCenter"><Button onClick={() => this.showDeleteModal(todo)} bsStyle="danger" bsSize="xsmall"><Glyphicon glyph="trash" /></Button></td>
          <td width="5"><Button onClick={() => this.props.mappedshowViewModal(todo)} bsStyle="primary" bsSize="xsmall"><Glyphicon glyph="eye-open" /></Button></td>

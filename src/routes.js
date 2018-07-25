@@ -8,7 +8,8 @@ import Accounts from './containers/Accounts';
 import Account from './containers/Account';
 export default (
   <Route path="/" component={App}>
-     <IndexRoute path="todo" component={Todos} />
+     {/* <IndexRoute path="todo" component={Todos} /> */}
+     <Route path="todo" component={Todos} />
      <Route path="todo/:id" component={Todo} />
      <Route path="account" component={Accounts} />
      <Route path="account/:id" component={Account} />
