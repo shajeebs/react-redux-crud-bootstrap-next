@@ -15,17 +15,17 @@ const mapStateToProps = (state,ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchAccounts: () => dispatch(accountActions.fetchAccounts()),
-    mappedEditAccount: dataToEdit => dispatch(accountActions.editAccount(dataToEdit)),
-    mappedAddNewAccount: dataToAdd => dispatch(accountActions.addNewAccount(dataToAdd)),
-    mappedshowAddModal: () => dispatch(accountActions.showEditModal(null)),
-    mappedhideAddModal: () => dispatch(accountActions.hideAddModal()),
     mappedshowViewModal: dataToView => dispatch(accountActions.showViewModal(dataToView)),
     mappedhideViewModal:() => dispatch(accountActions.hideViewModal()),
+    mappedshowAddModal: () => dispatch(accountActions.showEditModal(null)),
+    mappedhideAddModal: () => dispatch(accountActions.hideAddModal()),
+    mappedAddNewAccount: dataToAdd => dispatch(accountActions.addNewAccount(dataToAdd)),
     mappedshowEditModal: dataToEdit => dispatch(accountActions.showEditModal(dataToEdit)),
     mappedhideEditModal: () => dispatch(accountActions.hideEditModal()),
-    mappedDeleteAccount: dataToDelete => dispatch(accountActions.deleteAccount(dataToDelete)),
+    mappedEditAccount: dataToEdit => dispatch(accountActions.editAccount(dataToEdit)),
     mappedshowDeleteModal: dataToDelete => dispatch(accountActions.showDeleteModal(dataToDelete)),
-    mappedhideDeleteModal: () => dispatch(accountActions.hideDeleteModal())
+    mappedhideDeleteModal: () => dispatch(accountActions.hideDeleteModal()),
+    mappedDeleteAccount: dataToDelete => dispatch(accountActions.deleteAccount(dataToDelete))
   }
 }
  

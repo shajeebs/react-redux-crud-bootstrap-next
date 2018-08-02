@@ -257,3 +257,8 @@ export const hideDeleteModal = () => {
     type:'HIDE_DELETE_MODAL'
   }
 }
+
+export const showAddModal = () => { return { type: 'SHOW_ADD_MODAL', poco: null } }
+export const hideAddModal = () => { return { type: 'HIDE_ADD_MODAL' } }
+export const showViewModal = (inData) => { return { type: 'SHOW_VIEW_MODAL', poco: inData } }
+export const hideViewModal = () => { return { type: 'HIDE_VIEW_MODAL' } }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Alert,Glyphicon,Button,Modal } from 'react-bootstrap';
-import { Link } from 'react-router';
+// import { Link } from 'react-router';
 import TodoEditForm from './TodoEditForm';
  
 export default class Todos extends React.Component {
@@ -20,11 +20,28 @@ export default class Todos extends React.Component {
   showEditModal(todoToEdit){
      this.props.mappedshowEditModal(todoToEdit);
   }
- 
   hideEditModal(){
      this.props.mappedhideEditModal();
   }
- 
+ submitAddTodo(e){
+      e.preventDefault();
+    //alert('AddForm addTodo');
+    const form = document.getElementById('EditTodoForm');
+      if(form.name.value !== ""  && form.comment.value !== ""){
+        const data = new FormData();
+        data.append('name', form.name.value);
+        data.append('comment', form.comment.value);
+        // const data = {
+        //   name: form.name.value,
+        //   comment: form.comment.value
+        // }
+        this.props.mappedAddTodo(data);
+      form.reset();
+      }
+      else{
+        return ;
+      }
+  }
   submitEditTodo(e){
     e.preventDefault();
     console.log(this.props);
@@ -51,7 +68,6 @@ export default class Todos extends React.Component {
     else{
       return;
     }
- 
   }
  
   onChangeEditTodo(values){
@@ -101,7 +117,6 @@ export default class Todos extends React.Component {
          <td className="textCenter"><Button onClick={() => this.showEditModal(todo)} bsStyle="info" bsSize="xsmall"><Glyphicon glyph="pencil" /></Button></td>
          <td className="textCenter"><Button onClick={() => this.showDeleteModal(todo)} bsStyle="danger" bsSize="xsmall"><Glyphicon glyph="trash" /></Button></td>
          <td width="5"><Button onClick={() => this.props.mappedshowViewModal(todo)} bsStyle="primary" bsSize="xsmall"><Glyphicon glyph="eye-open" /></Button></td>
-         {/* <td className="textCenter"><Link to={`todo/${todo._id}`}>View Details</Link> </td> */}
          </tr> )
       }
       </tbody>
@@ -121,22 +136,22 @@ export default class Todos extends React.Component {
       <Modal.Body>
     <div className="col-md-12">
     {editTodo  &&
-     <TodoEditForm todoData={editTodo} editTodo={this.submitEditTodo} />
-    //<TodoEditForm  todoData={editTodo} handleSubmit={this.submitEditTodo} onChange={this.onChangeEditTodo} />
+     <TodoEditForm todoData={todoState.todoToEdit} 
+      editTodo={(todoState.todoToEdit && todoState.todoToEdit._id != null) ? this.submitEditTodo : this.submitAddTodo} />
     }
     {editTodo  && todoState.isFetching &&
       <Alert bsStyle="info">
-  <strong>Updating...... </strong>
+        <strong>Updating...... </strong>
       </Alert>
     }
     {editTodo  && !todoState.isFetching && todoState.error &&
       <Alert bsStyle="danger">
-  <strong>Failed. {todoState.error} </strong>
+        <strong>Failed. {todoState.error} </strong>
       </Alert>
     }
     {editTodo  && !todoState.isFetching && todoState.successMsg &&
       <Alert bsStyle="success">
-  Book <strong> {editTodo.name} </strong>{todoState.successMsg}
+        Book <strong> {editTodo.name} </strong>{todoState.successMsg}
       </Alert>
     }
     </div>
@@ -146,45 +161,41 @@ export default class Todos extends React.Component {
       </Modal.Footer>
     </Modal>
  
-{/* Modal for deleting todo */}
-    <Modal
-    show={todoState.showDeleteModal}
-    onHide={this.hideDeleteModal}
-    container={this}
-    aria-labelledby="contained-modal-title"
-  >
+    {/* Modal for deleting todo */}
+    <Modal show={todoState.showDeleteModal} onHide={this.hideDeleteModal} container={this}
+    aria-labelledby="contained-modal-title">
     <Modal.Header closeButton>
       <Modal.Title id="contained-modal-title">Delete Your Book</Modal.Title>
     </Modal.Header>
     <Modal.Body>
     {todoState.todoToDelete && !todoState.error && !todoState.isFetching &&
       <Alert bsStyle="warning">
-Are you sure you want to delete this todo <strong>{todoState.todoToDelete.name} </strong> ?
-</Alert>
+        Are you sure you want to delete this todo <strong>{todoState.todoToDelete.name} </strong> ?
+      </Alert>
     }
     {todoState.todoToDelete && todoState.error &&
       <Alert bsStyle="warning">
-Failed. <strong>{todoState.error} </strong>
-</Alert>
+        Failed. <strong>{todoState.error} </strong>
+      </Alert>
     }
  
     {todoState.todoToDelete && !todoState.error && todoState.isFetching &&
       <Alert bsStyle="success">
-  <strong>Deleting.... </strong>
-</Alert>
+        <strong>Deleting.... </strong>
+      </Alert>
     }
  
     {!todoState.todoToDelete && !todoState.error && !todoState.isFetching&&
       <Alert bsStyle="success">
-Todo <strong>{todoState.successMsg} </strong>
-</Alert>
+        Todo <strong>{todoState.successMsg} </strong>
+      </Alert>
     }
     </Modal.Body>
     <Modal.Footer>
      {!todoState.successMsg && !todoState.isFetching &&
        <div>
-       <Button onClick={this.cofirmDeleteTodo}>Yes</Button>
-       <Button onClick={this.hideDeleteModal}>No</Button>
+        <Button onClick={this.cofirmDeleteTodo}>Yes</Button>
+        <Button onClick={this.hideDeleteModal}>No</Button>
        </div>
     }
     {todoState.successMsg && !todoState.isFetching &&

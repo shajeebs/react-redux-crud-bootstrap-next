@@ -3,12 +3,12 @@ import { Navbar,Nav,NavItem, MenuItem, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import './App.css';
 export default class App extends React.Component {
-  constructor(props){
-    super(props);
-    // this.toggleAddTodo = this.toggleAddTodo.bind(this);
-    // this.toggleShowEmps = this.toggleShowEmps.bind(this);
-    //this.addTodo = this.addTodo.bind(this);
-  }
+  // constructor(props){
+  //   super(props);
+  //   // this.toggleAddTodo = this.toggleAddTodo.bind(this);
+  //   // this.toggleShowEmps = this.toggleShowEmps.bind(this);
+  //   //this.addTodo = this.addTodo.bind(this);
+  // }
   // toggleAddTodo(e){
   //   e.preventDefault();
   //    this.props.mappedToggleAddTodo();
@@ -37,7 +37,7 @@ export default class App extends React.Component {
   //     }
   // }
   render(){
-    const appState = this.props.mappedAppState;
+    // const appState = this.props.mappedAppState;
     return(
       <div>
         <Navbar inverse  collapseOnSelect className="customNav">
@@ -67,9 +67,9 @@ export default class App extends React.Component {
               <LinkContainer to="/todo">
                     <NavItem eventKey={1}>Todos</NavItem>
                   </LinkContainer>
-                  <LinkContainer to="/account">
-                    <NavItem eventKey={1}>Accounts</NavItem>
-                  </LinkContainer>
+              {/*<LinkContainer to="/account">
+                <NavItem eventKey={1}>Accounts</NavItem>
+              </LinkContainer>*/}
             </Nav>
           </Navbar.Collapse>
         </Navbar>

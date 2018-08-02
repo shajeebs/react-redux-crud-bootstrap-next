@@ -1,6 +1,6 @@
 import React from 'react';
 import { Alert,Glyphicon,Button,Modal } from 'react-bootstrap';
-import { Link } from 'react-router';
+// import { Link } from 'react-router';
 import EditForm from './EditForm';
 //import AddForm from './AddForm';
 export default class Accounts extends React.Component {
@@ -119,20 +119,20 @@ export default class Accounts extends React.Component {
       </thead>
       <tbody>
         {pocos && pocos.map((poco,i) => <tr key={i}>
-        <td>{poco.AccountCode}</td>
-        <td>{poco.AccountName}</td>
-        <td>{poco.Balance}</td>
-        <td>{poco.DebitBalance}</td>
-        <td>{poco.CreditBalance}</td>
-         <td width="5"><Button onClick={() => this.props.mappedshowEditModal(poco)} bsStyle="info" bsSize="xsmall"><Glyphicon glyph="pencil" /></Button></td>
-         <td width="5"><Button onClick={() => this.props.mappedshowDeleteModal(poco)} bsStyle="danger" bsSize="xsmall"><Glyphicon glyph="trash" /></Button></td>
-         <td width="5"><Button onClick={() => this.props.mappedshowViewModal(poco)} bsStyle="primary" bsSize="xsmall"><Glyphicon glyph="eye-open" /></Button></td>
-         {/* <td width="5"><Link to={`poco/${poco._id}`}><Glyphicon glyph="eye-open" /></Link> </td> */}
+          <td>{poco.AccountCode}</td>
+          <td>{poco.AccountName}</td>
+          <td>{poco.Balance}</td>
+          <td>{poco.DebitBalance}</td>
+          <td>{poco.CreditBalance}</td>
+          <td width="5"><Button onClick={() => this.props.mappedshowEditModal(poco)} bsStyle="info" bsSize="xsmall"><Glyphicon glyph="pencil" /></Button></td>
+          <td width="5"><Button onClick={() => this.props.mappedshowDeleteModal(poco)} bsStyle="danger" bsSize="xsmall"><Glyphicon glyph="trash" /></Button></td>
+          <td width="5"><Button onClick={() => this.props.mappedshowViewModal(poco)} bsStyle="primary" bsSize="xsmall"><Glyphicon glyph="eye-open" /></Button></td>
          </tr> )
       }
       </tbody>
       </table>
     }
+
     {/* Modal for Editing */}
     <Modal show={pocoState.showEditModal} onHide={this.hideEditModal} container={this} aria-labelledby="contained-modal-title">
       <Modal.Header closeButton>
@@ -164,6 +164,7 @@ export default class Accounts extends React.Component {
         <Button onClick={this.hideEditModal}>Close</Button>
       </Modal.Footer>
     </Modal>
+
     {/* Modal for Deleting */}
     <Modal show={pocoState.showDeleteModal} onHide={this.props.mappedhideDeleteModal} container={this} aria-labelledby="contained-modal-title">
       <Modal.Header closeButton>
@@ -203,6 +204,7 @@ export default class Accounts extends React.Component {
       }
       </Modal.Footer>
     </Modal>
+
     {/* Modal for View */}
     <Modal show={pocoState.showViewModal} onHide={this.props.mappedhideViewModal} container={this} aria-labelledby="contained-modal-title">
       <Modal.Header closeButton>

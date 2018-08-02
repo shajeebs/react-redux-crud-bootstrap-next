@@ -12,7 +12,7 @@ const TodoEditForm = (props) => {
           <input type="hidden" value={props.todoData._id} name="id"/>
             <FormControl onChange={props.todoData.name}
               type="text" placeholder="Enter todo"
-              name="name" defaultValue={props.todoData.name}
+              name="name" defaultValue={props.todoData ? props.todoData.name: ""}
                />
         </FormGroup>
         </div>
@@ -21,7 +21,7 @@ const TodoEditForm = (props) => {
               <ControlLabel>Description: </ControlLabel>
                 <FormControl
                   componentClass="textarea" placeholder="Enter description" onChange={props.todoData.comment}
-                  name="comment" defaultValue={props.todoData.comment}
+                  name="comment" defaultValue={props.todoData ? props.todoData.comment: ""}
                    />
             </FormGroup>
             </div>
