@@ -106,7 +106,7 @@ export const fetchTodoById = (todoId) => {
   return (dispatch) => {
     dispatch(fetchTodoRequest());
       // Returns a promise
-      return fetch(apiUrl + todoId)
+      return fetch(apiUrl + '/' + todoId)
              .then(response => {console.log(response)
                if(response.ok){
                  response.json().then(data => {
@@ -163,7 +163,7 @@ export const hideEditModal = () => {
 export const editTodo = (todo) => {
     return (dispatch) => {
       dispatch(editTodoRequest(todo));
-      return fetch(apiUrl, {
+      return fetch(apiUrl + '/' + todo._id, {
         method:'put',
         body:todo
       }).then(response => {
@@ -204,13 +204,14 @@ export const editTodoFailed = (error) => {
 }
 
 export const deleteTodo = (todo) => {
+  console.log(apiUrl + '/' + todo._id);
   return (dispatch) => {
     dispatch(deleteTodoRequest(todo));
-    return fetch(apiUrl + todo._id ,{
+    return fetch(apiUrl + '/' + todo._id ,{
       method:'delete'
     }).then(response => {
-      if(response.ok){
-        response.json().then(data => {
+      if(response.ok){//console.log(response);
+        response.json().then(data => {//console.log(data);
           dispatch(deleteTodoSuccess(data.message));
         })
       }
