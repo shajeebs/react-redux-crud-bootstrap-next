@@ -161,6 +161,8 @@ export const hideEditModal = () => {
 }
 
 export const editTodo = (todo) => {
+  console.log(todo);
+      alert("Save Cat event");
     return (dispatch) => {
       dispatch(editTodoRequest(todo));
       return fetch(apiUrl + '/' + todo._id, {

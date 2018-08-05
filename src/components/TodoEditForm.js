@@ -1,36 +1,26 @@
 import React from 'react';
-//import { Field, reduxForm } from 'redux-form';
- 
-import { FormGroup,ControlLabel,FormControl,Button } from 'react-bootstrap';
+import PropTypes from 'prop-types';
+import TextInput from './Common/TextInput';
+
 const TodoEditForm = (props) => {
   return (
-    <form className="form form-horizontal" id="EditTodoForm" onSubmit={props.submitEditTodo}>
-    <div className="row">
-    <div className="col-md-12">
-    <FormGroup>
-          <ControlLabel>Todo: </ControlLabel>
-          <input type="hidden" value={props.todoData._id} name="id"/>
-            <FormControl onChange={props.todoData.name}
-              type="text" placeholder="Enter todo"
-              name="name" defaultValue={props.todoData ? props.todoData.name: ""}
-               />
-        </FormGroup>
-        </div>
-        <div className="col-md-12">
-        <FormGroup>
-              <ControlLabel>Description: </ControlLabel>
-                <FormControl
-                  componentClass="textarea" placeholder="Enter description" onChange={props.todoData.comment}
-                  name="comment" defaultValue={props.todoData ? props.todoData.comment: ""}
-                   />
-            </FormGroup>
-            </div>
-          </div>
-          <FormGroup>
-              <Button type="submit" bsStyle="success" bsSize="large" block>Submit</Button>
-          </FormGroup>
+     <form>
+        <TextInput name="name" label="Name" value={props.cat ? props.cat.name: ""} onChange={props.onChange}/>
+        <TextInput name="comment" label="Comment" value={props.cat ? props.cat.comment: ""} onChange={props.onChange}/>
+ 
+        <input type="submit" disabled={props.saving}
+            value={props.saving ? 'Saving...' : 'Save'} className="btn btn-primary" onClick={props.onSave}/>       
     </form>
   );
 }
- 
+
+TodoEditForm.propTypes = {
+  cat: PropTypes.object.isRequired,
+  //hobbies: PropTypes.array.isRequired,
+  onSave: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  // onHobbyChange: PropTypes.func.isRequired,
+  saving: PropTypes.bool
+};
+
 export default TodoEditForm;
