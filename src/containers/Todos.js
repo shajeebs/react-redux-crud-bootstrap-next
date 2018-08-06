@@ -14,19 +14,18 @@ const mapStateToProps = (state,ownProps) => {
 // map actions to props
 const mapDispatchToProps = (dispatch) => {
   return {
-    //you can now say this.props.mappedAppActions
-    fetchTodos: () => dispatch(todoActions.fetchTodos()),
+    fetchAllPocos: () => dispatch(todoActions.fetchTodos()),
     mappedshowViewModal: dataToView => dispatch(todoActions.showViewModal(dataToView)),
     mappedhideViewModal:() => dispatch(todoActions.hideViewModal()),
     mappedshowAddModal: () => dispatch(todoActions.showEditModal(null)),
     mappedhideAddModal: () => dispatch(todoActions.hideAddModal()),
-    mappedAddNewTodo: dataToAdd => dispatch(todoActions.addNewTodo(dataToAdd)),
+    mappedAddNewPoco: dataToAdd => dispatch(todoActions.addNewTodo(dataToAdd)),
     mappedshowEditModal: todoToEdit => dispatch(todoActions.showEditModal(todoToEdit)),
     mappedhideEditModal: () => dispatch(todoActions.hideEditModal()),
-    mappedEditTodo: todoToEdit => dispatch(todoActions.editTodo(todoToEdit)),
-    mappedshowDeleteModal: todoToDelete => dispatch(todoActions.showDeleteModal(todoToDelete)),
+    mappedEditPoco: todoToEdit => dispatch(todoActions.editTodo(todoToEdit)),
+    mappedshowDeleteModal: pocoToDelete => dispatch(todoActions.showDeleteModal(pocoToDelete)),
     mappedhideDeleteModal: () => dispatch(todoActions.hideDeleteModal()),
-    mappedDeleteTodo: todoToDelete => dispatch(todoActions.deleteTodo(todoToDelete))
+    mappedDeletePoco: pocoToDelete => dispatch(todoActions.deleteTodo(pocoToDelete))
   }
 }
 

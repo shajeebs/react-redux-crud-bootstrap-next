@@ -7,8 +7,6 @@ export default class Todos extends React.Component {
   constructor(props){
     super(props);
     this.hideEditModal = this.hideEditModal.bind(this);
-    this.submitEditTodo = this.submitEditTodo.bind(this);
-    this.onChangeEditTodo = this.onChangeEditTodo.bind(this);
     this.hideDeleteModal = this.hideDeleteModal.bind(this);
     this.cofirmDeleteTodo = this.cofirmDeleteTodo.bind(this);
 
@@ -16,79 +14,32 @@ export default class Todos extends React.Component {
     this.updatePocoState = this.updatePocoState.bind(this);
   }
  
-  componentWillMount(){
-    this.props.fetchTodos();
+  componentWillMount() {
+    this.props.fetchAllPocos();
   }
  
-  showEditModal(todoToEdit){
-     this.props.mappedshowEditModal(todoToEdit);
+  showEditModal(pocoToEdit){
+    if(pocoToEdit){
+      this.props.mappedshowEditModal(pocoToEdit);
+    }
+    else
+      this.props.mappedshowEditModal({name: "", comment: ""});
   }
+
   hideEditModal(){
      this.props.mappedhideEditModal();
   }
-//  submitAddTodo(e){
-//       e.preventDefault();
-//     const form = document.getElementById('EditTodoForm');
-//       if(form.name.value !== ""  && form.comment.value !== ""){
-//         const data = new FormData();
-//         data.append('name', form.name.value);
-//         data.append('comment', form.comment.value);
-//         // const data = {
-//         //   name: form.name.value,
-//         //   comment: form.comment.value
-//         // }
-//         this.props.mappedAddTodo(data);
-//       form.reset();
-//       }
-//       else{
-//         return ;
-//       }
-//   }
-  submitEditTodo(e){
-    e.preventDefault();
-    console.log(this.props);
-    console.log(this.state)
-        alert('AddForm addTodo');
 
-    // //console.log(this.refs)
-    // const formData = {};
-    // for (const field in this.refs) {
-    //   formData[field] = this.refs[field].value;
-    // }
-    // console.log('FormData-->', formData);
- 
-    const editForm = document.getElementById('EditTodoForm');
-   if(editForm.name.value !== ""){
-      const data = new FormData(editForm);
-      data.append('id', editForm.id.value);
-      data.append('name', editForm.name.value);
-      data.append('comment', editForm.comment.value);
-     
-      console.log(data.id);
-      console.log(data.name);
-      console.log(data.comment);
-      // console.log(editForm);
-      this.props.mappedEditTodo(data);
-    }
-    else{
-      return;
-    }
-  }
- 
-  onChangeEditTodo(values){
-    console.log(values);
-  }
- 
   hideDeleteModal(){
     this.props.mappedhideDeleteModal();
   }
  
-  showDeleteModal(todoToDelete){
-    this.props.mappedshowDeleteModal(todoToDelete);
+  showDeleteModal(pocoToDelete){
+    this.props.mappedshowDeleteModal(pocoToDelete);
   }
  
   cofirmDeleteTodo(){
-    this.props.mappedDeleteTodo(this.props.mappedTodoState.todoToDelete);
+    this.props.mappedDeletePoco(this.props.mappedTodoState.todoToDelete);
   }
  
   updatePocoState(event) {
@@ -102,7 +53,8 @@ export default class Todos extends React.Component {
   savePoco(event) {
     event.preventDefault();
     const saveData = this.props.mappedTodoState.todoToEdit;
-    this.props.mappedEditTodo(saveData);
+    if(saveData._id) { console.log("This is Update POCO"); this.props.mappedEditPoco(saveData); }
+    else { console.log("This is Add New POCO"); this.props.mappedAddNewPoco(saveData); }
   }
 
   render(){
@@ -155,7 +107,7 @@ export default class Todos extends React.Component {
       </Modal.Header>
       <Modal.Body>
     <div className="col-md-12">
-      { editTodo  && <TodoEditForm cat={todoState.todoToEdit} onSave={this.savePoco} onChange={this.updatePocoState} /> }
+      { editTodo  && <TodoEditForm pocoToEdit={todoState.todoToEdit} onSave={this.savePoco} onChange={this.updatePocoState} /> }
 
     {editTodo  && todoState.isFetching &&
       <Alert bsStyle="info">

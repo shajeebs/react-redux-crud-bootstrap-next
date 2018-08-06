@@ -1,3 +1,4 @@
+//const apiUrl = "http://localhost:3033/Account";
 const apiUrl = "https://nodesmallapp.herokuapp.com/Account";
  
 export const addNewAccount = (inData) => {
@@ -28,7 +29,7 @@ export const fetchAccounts = () => {
     dispatch(fetchAccountsRequest());
     return fetch(apiUrl).then(resp => {//console.log(resp);
       if(resp.ok){
-        resp.json().then(data => {console.log(data);
+        resp.json().then(data => {//console.log(data);
           dispatch(fetchAccountsSuccess(data , "Account fetched successfully...!"));
         })
       } else {
@@ -69,9 +70,9 @@ export const editAccount = (inData) => {
     return fetch(apiUrl,{
       method: 'PUT',
       body: inData
-    }).then(resp => {console.log(resp);
+    }).then(resp => {//console.log(resp);
       if(resp.ok){
-        resp.json().then(data => {console.log(data);
+        resp.json().then(data => {//console.log(data);
           dispatch(editAccountSuccess(data.Accountloyee, data.message));
         })
       }else {

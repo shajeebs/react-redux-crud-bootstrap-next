@@ -1,5 +1,4 @@
-// ./react-redux-client/src/actions/todoActions.js
-
+//const apiUrl = "http://localhost:3033/todo";
 const apiUrl = "https://nodesmallapp.herokuapp.com/todo";
 
 export const toggleAddBook = () => {
@@ -8,16 +7,16 @@ export const toggleAddBook = () => {
   }
 }
 
-export const addNewTodo = (todo) => {console.log(todo)
+export const addNewTodo = (todo) => {//console.log(todo)
   return (dispatch) => {
     dispatch(addNewTodoRequest(todo));
-    console.log(todo);
+    //console.log(todo);
     return fetch(apiUrl, {
       method:'post',
       body: todo,
-    }).then(response => {console.log(response);
+    }).then(response => {//console.log(response);
       if(response.ok){
-        response.json().then(data => {console.log(data);
+        response.json().then(data => {//console.log(data);
           dispatch(addNewTodoRequestSuccess(data, "data.message"))
         })
       }
@@ -107,7 +106,7 @@ export const fetchTodoById = (todoId) => {
     dispatch(fetchTodoRequest());
       // Returns a promise
       return fetch(apiUrl + '/' + todoId)
-             .then(response => {console.log(response)
+             .then(response => {//console.log(response)
                if(response.ok){
                  response.json().then(data => {
                    dispatch(fetchTodoSuccess(data.todo[0], data.message));
@@ -161,7 +160,7 @@ export const hideEditModal = () => {
 }
 
 export const editTodo = (todo) => {
-  console.log(todo);
+  //console.log(todo);
       alert("Save Cat event");
     return (dispatch) => {
       dispatch(editTodoRequest(todo));
@@ -206,7 +205,7 @@ export const editTodoFailed = (error) => {
 }
 
 export const deleteTodo = (todo) => {
-  console.log(apiUrl + '/' + todo._id);
+  //console.log(apiUrl + '/' + todo._id);
   return (dispatch) => {
     dispatch(deleteTodoRequest(todo));
     return fetch(apiUrl + '/' + todo._id ,{
