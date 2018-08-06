@@ -7,13 +7,16 @@ export const toggleAddBook = () => {
   }
 }
 
-export const addNewTodo = (todo) => {//console.log(todo)
+export const addNewTodo = (dataToAdd) => {
+  var formData = new FormData();
+  for ( var key in dataToAdd ) {
+      formData.append(key, dataToAdd[key]);
+  }
   return (dispatch) => {
-    dispatch(addNewTodoRequest(todo));
-    //console.log(todo);
+    dispatch(addNewTodoRequest(dataToAdd));
     return fetch(apiUrl, {
       method:'post',
-      body: todo,
+      body: formData,
     }).then(response => {//console.log(response);
       if(response.ok){
         response.json().then(data => {//console.log(data);
@@ -102,10 +105,11 @@ export const fetchTodosFailed = (error) => {
 }
 
 export const fetchTodoById = (todoId) => {
+  const url = `${apiUrl}/${todoId}`;
   return (dispatch) => {
     dispatch(fetchTodoRequest());
       // Returns a promise
-      return fetch(apiUrl + '/' + todoId)
+      return fetch(url)
              .then(response => {//console.log(response)
                if(response.ok){
                  response.json().then(data => {
@@ -159,14 +163,18 @@ export const hideEditModal = () => {
   }
 }
 
-export const editTodo = (todo) => {
-  //console.log(todo);
-      alert("Save Cat event");
-    return (dispatch) => {
-      dispatch(editTodoRequest(todo));
-      return fetch(apiUrl + '/' + todo._id, {
+export const editTodo = (dataToEdit) => {
+  const editUrl = `${apiUrl}/${dataToEdit._id}`;
+  var formData = new FormData();
+  for ( var key in dataToEdit ) {
+      formData.append(key, dataToEdit[key]);
+  }
+  
+  return (dispatch) => {
+      dispatch(editTodoRequest(dataToEdit));
+      return fetch(editUrl, {
         method:'put',
-        body:todo
+        body:formData
       }).then(response => {
         if(response.ok){
           response.json().then(data => {
@@ -205,10 +213,11 @@ export const editTodoFailed = (error) => {
 }
 
 export const deleteTodo = (todo) => {
-  //console.log(apiUrl + '/' + todo._id);
+  const deleteUrl = `${apiUrl}/${todo._id}`;
+  console.log(deleteUrl);
   return (dispatch) => {
     dispatch(deleteTodoRequest(todo));
-    return fetch(apiUrl + '/' + todo._id ,{
+    return fetch(deleteUrl ,{
       method:'delete'
     }).then(response => {
       if(response.ok){//console.log(response);
