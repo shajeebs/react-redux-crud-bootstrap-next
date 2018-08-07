@@ -1,20 +1,16 @@
-// ./react-redux-client/src/containers/Todos.js
 import { connect } from 'react-redux';
 import * as todoActions from '../actions/todoActions';
 import Todos from '../components/Todos';
 
-// map state from store to props
 const mapStateToProps = (state,ownProps) => {
   return {
-    //you can now say this.props.mappedAppSate
     mappedTodoState: state.todoState
   }
 }
 
-// map actions to props
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchAllPocos: () => dispatch(todoActions.fetchTodos()),
+    fetchAllPocos: () => dispatch(todoActions.fetchPocos()),
     mappedshowViewModal: dataToView => dispatch(todoActions.showViewModal(dataToView)),
     mappedhideViewModal:() => dispatch(todoActions.hideViewModal()),
     mappedshowAddModal: () => dispatch(todoActions.showEditModal(null)),

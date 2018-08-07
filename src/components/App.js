@@ -3,39 +3,6 @@ import { Navbar,Nav,NavItem, MenuItem, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import './App.css';
 export default class App extends React.Component {
-  // constructor(props){
-  //   super(props);
-  //   // this.toggleAddTodo = this.toggleAddTodo.bind(this);
-  //   // this.toggleShowEmps = this.toggleShowEmps.bind(this);
-  //   //this.addTodo = this.addTodo.bind(this);
-  // }
-  // toggleAddTodo(e){
-  //   e.preventDefault();
-  //    this.props.mappedToggleAddTodo();
-  // }
-  // toggleShowEmps(e){
-  //   e.preventDefault();
-  //    this.props.mappedShowEmps();
-  // }
-  // addTodo(e){
-  //     e.preventDefault();
-  //   //alert('AddForm addTodo');
-  //   const form = document.getElementById('addTodoForm');
-  //     if(form.todoText.value !== ""  && form.todoDesc.value !== ""){
-  //       const data = new FormData();
-  //       data.append('todoText', form.todoText.value);
-  //       data.append('todoDesc', form.todoDesc.value);
-  //       // const data = {
-  //       //   todoText: form.todoText.value,
-  //       //   todoDesc: form.todoDesc.value
-  //       // }
-  //       this.props.mappedAddTodo(data);
-  //     form.reset();
-  //     }
-  //     else{
-  //       return ;
-  //     }
-  // }
   render(){
     // const appState = this.props.mappedAppState;
     return(
@@ -74,12 +41,8 @@ export default class App extends React.Component {
           </Navbar.Collapse>
         </Navbar>
         <div className="container">
-        {/* {console.log(this.props)} */}
-          {/* {appState.showAddTodo && <TodoForm addTodo={this.addTodo} /> } */}
           { /* Each Smaller Components */}
-           {/*{appState.mappedShowTodos && <Todos /> }*/}
            {this.props.children}
-          {/*{appState.mappedShowEmps && <Emps />}*/}
         </div>
     </div>
    );
