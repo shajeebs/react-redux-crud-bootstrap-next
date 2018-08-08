@@ -16,7 +16,7 @@ export const addTodo = (dataToAdd) => {
     }).then(response => {
       if(response.ok){
         response.json().then(data => {
-          dispatch(addTodoRequestSuccess(data, "data.message"))
+          dispatch(addTodoRequestSuccess(data, "Added successfully...!"))
         })
       }
       else{
@@ -27,7 +27,7 @@ export const addTodo = (dataToAdd) => {
     })
   }
 }
-export const addTodoRequest = (pocoData) => { return { type: todoActions.ADD_TODO_REQUEST, pocoData } }
+export const addTodoRequest = (pocoData) => { return { type: todoActions.ADD_TODO_REQUEST, poco:pocoData } }
 export const addTodoRequestSuccess = (pocoData, message) => { return { type: todoActions.ADD_TODO_REQUEST_SUCCESS, poco:pocoData, message:message } }
 export const addTodoRequestFailed = (error) => { return { type: todoActions.ADD_TODO_REQUEST_FAILED, error } }
 
@@ -40,7 +40,7 @@ export const fetchPocos = () => {
                 .then(response => {
                   if(response.ok){
                     response.json().then(data => {
-                      dispatch(fetchPocosSuccess(data,"Fetched successfully"));
+                      dispatch(fetchPocosSuccess(data, "Fetched successfully...!"));
                     })
                   }
                   else{
@@ -96,7 +96,7 @@ export const editTodo = (dataToEdit) => {
       }).then(response => {
         if(response.ok){
           response.json().then(data => {
-            dispatch(editTodoSuccess(data,"data.message"));
+            dispatch(editTodoSuccess(data,"Edited successfully...!"));
           })
         }
         else{
@@ -108,7 +108,7 @@ export const editTodo = (dataToEdit) => {
     }
 }
 
-export const editTodoRequest = (pocoData) => { return { type:todoActions.EDIT_TODO_REQUEST, pocoData } }
+export const editTodoRequest = (pocoData) => { return { type:todoActions.EDIT_TODO_REQUEST, poco:pocoData } }
 export const editTodoSuccess = (pocoData, message) => { return { type:todoActions.EDIT_TODO_SUCCESS, poco:pocoData, message:message } }
 export const editTodoFailed = (error) => { return { type:todoActions.EDIT_TODO_FAILED, error } }
 
@@ -121,7 +121,7 @@ export const deleteTodo = (pocoData) => {
     }).then(response => {
       if(response.ok){
         response.json().then(data => {
-          dispatch(deleteTodoSuccess(data.message));
+          dispatch(deleteTodoSuccess(data, "Deleted successfully...!"));
         })
       }
       else{
@@ -133,8 +133,8 @@ export const deleteTodo = (pocoData) => {
   }
 }
 
-export const deleteTodoRequest = (pocoData) => { return { type:todoActions.DELETE_TODO_REQUEST, pocoData } }
-export const deleteTodoSuccess = (message) => { return { type:todoActions.DELETE_TODO_SUCCESS, message:message } }
+export const deleteTodoRequest = (pocoData) => { return { type:todoActions.DELETE_TODO_REQUEST, poco:pocoData } }
+export const deleteTodoSuccess = (pocoData, message) => { return { type:todoActions.DELETE_TODO_SUCCESS, poco:pocoData, message:message } }
 export const deleteTodoFailed = (error) => { return { type:todoActions.DELETE_TODO_FAILED, error } }
 
 //Modal Popups

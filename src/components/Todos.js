@@ -53,19 +53,20 @@ export default class Todos extends React.Component {
   savePoco(event) {
     event.preventDefault();
     const saveData = this.props.mappedTodoState.todoToEdit;
-    if(saveData._id) { console.log("This is Update POCO"); this.props.mappedEditPoco(saveData); }
-    else { console.log("This is Add New POCO"); this.props.mappedAddNewPoco(saveData); }
+    if(saveData._id) { this.props.mappedEditPoco(saveData); }
+    else { this.props.mappedAddNewPoco(saveData); }
   }
 
   render(){
     const todoState = this.props.mappedTodoState;
     const pocos = todoState.pocos;
     const editTodo = todoState.todoToEdit;
-    console.log(todoState);
     return(
       <div className="col-md-12">
       
       <h3 className="centerAlign">Todos</h3>
+      <Button onClick={() => this.showEditModal()} bsStyle="primary" bsSize="xsmall">
+       <Glyphicon glyph="plus"/> Add New Item</Button>
       {todoState.isFetching &&
         <p>Loading todos....</p>
       }
@@ -75,8 +76,7 @@ export default class Todos extends React.Component {
       {pocos && pocos.length > 0 && !todoState.isFetching &&
       <table className="table booksTable">
       <thead>
-      <tr><th colSpan="5"><Button onClick={() => this.showEditModal()} bsStyle="primary" bsSize="xsmall">
-       <Glyphicon glyph="plus"/> Add New Item</Button></th></tr>
+      <tr><th colSpan="5"></th></tr>
        <tr><th>Id</th><th>Todo</th><th>Comment</th><th>Modified</th><th>Created</th>
        <th className="textCenter">Edit</th><th className="textCenter">Delete</th><th className="textCenter">View</th></tr>
       </thead>
