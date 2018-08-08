@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import TextInput from './Common/TextInput';
+import TextInput from '../common/TextInput';
 
 const TodoEditForm = (props) => {
   return (

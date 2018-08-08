@@ -59,19 +59,20 @@ export default class Todos extends React.Component {
 
   render(){
     const todoState = this.props.mappedTodoState;
-    const todos = todoState.todos;
+    const pocos = todoState.pocos;
     const editTodo = todoState.todoToEdit;
+    console.log(todoState);
     return(
       <div className="col-md-12">
       
       <h3 className="centerAlign">Todos</h3>
-      {!todos && todoState.isFetching &&
+      {todoState.isFetching &&
         <p>Loading todos....</p>
       }
-      {todos.length <= 0 && !todoState.isFetching &&
+      {pocos && pocos.length <= 0 && !todoState.isFetching &&
         <p>No Todos Available. Add A Todo to List here.</p>
       }
-      {todos && todos.length > 0 && !todoState.isFetching &&
+      {pocos && pocos.length > 0 && !todoState.isFetching &&
       <table className="table booksTable">
       <thead>
       <tr><th colSpan="5"><Button onClick={() => this.showEditModal()} bsStyle="primary" bsSize="xsmall">
@@ -80,7 +81,7 @@ export default class Todos extends React.Component {
        <th className="textCenter">Edit</th><th className="textCenter">Delete</th><th className="textCenter">View</th></tr>
       </thead>
       <tbody>
-        {todos.map((todo,i) => <tr key={i}>
+        {pocos.map((todo,i) => <tr key={i}>
         <td>{todo._id}</td>
         <td>{todo.name}</td>
         <td>{todo.comment}</td>

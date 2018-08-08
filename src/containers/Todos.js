@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch) => {
     mappedhideViewModal:() => dispatch(todoActions.hideViewModal()),
     mappedshowAddModal: () => dispatch(todoActions.showEditModal(null)),
     mappedhideAddModal: () => dispatch(todoActions.hideAddModal()),
-    mappedAddNewPoco: dataToAdd => dispatch(todoActions.addNewTodo(dataToAdd)),
+    mappedAddNewPoco: dataToAdd => dispatch(todoActions.addTodo(dataToAdd)),
     mappedshowEditModal: todoToEdit => dispatch(todoActions.showEditModal(todoToEdit)),
     mappedhideEditModal: () => dispatch(todoActions.hideEditModal()),
     mappedEditPoco: todoToEdit => dispatch(todoActions.editTodo(todoToEdit)),

@@ -1,35 +1,35 @@
 import { todoActions, modalActions } from '../constants/actionTypes';
 
-const apiUrl = "http://localhost:3033/todo";
-//const apiUrl = "https://nodesmallapp.herokuapp.com/todo";
+//const apiUrl = "http://localhost:3033/todo";
+const apiUrl = "https://nodesmallapp.herokuapp.com/todo";
 
-export const addNewTodo = (dataToAdd) => {
+export const addTodo = (dataToAdd) => {
   var formData = new FormData();
   for ( var key in dataToAdd ) {
       formData.append(key, dataToAdd[key]);
   }
   return (dispatch) => {
-    dispatch(addNewTodoRequest(dataToAdd));
+    dispatch(addTodoRequest(dataToAdd));
     return fetch(apiUrl, {
       method:'post',
       body: formData,
     }).then(response => {
       if(response.ok){
         response.json().then(data => {
-          dispatch(addNewTodoRequestSuccess(data, "data.message"))
+          dispatch(addTodoRequestSuccess(data, "data.message"))
         })
       }
       else{
         response.json().then(error => {
-          dispatch(addNewTodoRequestFailed(error))
+          dispatch(addTodoRequestFailed(error))
         })
       }
     })
   }
 }
-export const addNewTodoRequest = (todo) => { return { type: todoActions.ADD_NEW_TODO_REQUEST, todo } }
-export const addNewTodoRequestSuccess = (todo, message) => { return { type: todoActions.ADD_NEW_TODO_REQUEST_SUCCESS, todo:todo, message:message } }
-export const addNewTodoRequestFailed = (error) => { return { type: todoActions.ADD_NEW_TODO_REQUEST_FAILED, error } }
+export const addTodoRequest = (pocoData) => { return { type: todoActions.ADD_TODO_REQUEST, pocoData } }
+export const addTodoRequestSuccess = (pocoData, message) => { return { type: todoActions.ADD_TODO_REQUEST_SUCCESS, poco:pocoData, message:message } }
+export const addTodoRequestFailed = (error) => { return { type: todoActions.ADD_TODO_REQUEST_FAILED, error } }
 
 
 export const fetchPocos = () => {
@@ -53,7 +53,7 @@ export const fetchPocos = () => {
 }
 
 export const fetchPocosRequest = () => { return { type:todoActions.FETCH_TODOS_REQUEST } }
-export const fetchPocosSuccess = (todos,message) => { return { type: todoActions.FETCH_TODOS_SUCCESS, todos: todos, message: message, receivedAt: Date.now } }
+export const fetchPocosSuccess = (pocos,message) => { return { type: todoActions.FETCH_TODOS_SUCCESS, pocos: pocos, message: message, receivedAt: Date.now } }
 export const fetchPocosFailed = (error) => { return { type:todoActions.FETCH_TODOS_FAILED, error } }
 
 export const fetchTodoById = (todoId) => {
@@ -79,7 +79,7 @@ export const fetchTodoById = (todoId) => {
 }
 
 export const fetchTodoRequest = () => { return { type:todoActions.FETCH_TODO_REQUEST } }
-export const fetchPocosuccess = (todo,message) => { return { type: todoActions.FETCH_TODO_SUCCESS, todo: todo, message: message, receivedAt: Date.now } }
+export const fetchPocosuccess = (pocoData,message) => { return { type: todoActions.FETCH_TODO_SUCCESS, poco: pocoData, message: message, receivedAt: Date.now } }
 export const fetchTodoFailed = (error) => { return { type:todoActions.FETCH_TODO_FAILED, error } }
 
 export const editTodo = (dataToEdit) => {
@@ -108,14 +108,14 @@ export const editTodo = (dataToEdit) => {
     }
 }
 
-export const editTodoRequest = (todo) => { return { type:todoActions.EDIT_TODO_REQUEST, todo } }
-export const editTodoSuccess = (todo,message) => { return { type:todoActions.EDIT_TODO_SUCCESS, todo:todo, message:message } }
+export const editTodoRequest = (pocoData) => { return { type:todoActions.EDIT_TODO_REQUEST, pocoData } }
+export const editTodoSuccess = (pocoData, message) => { return { type:todoActions.EDIT_TODO_SUCCESS, poco:pocoData, message:message } }
 export const editTodoFailed = (error) => { return { type:todoActions.EDIT_TODO_FAILED, error } }
 
-export const deleteTodo = (todo) => {
-  const deleteUrl = `${apiUrl}/${todo._id}`;
+export const deleteTodo = (pocoData) => {
+  const deleteUrl = `${apiUrl}/${pocoData._id}`;
   return (dispatch) => {
-    dispatch(deleteTodoRequest(todo));
+    dispatch(deleteTodoRequest(pocoData));
     return fetch(deleteUrl ,{
       method:'delete'
     }).then(response => {
@@ -133,16 +133,16 @@ export const deleteTodo = (todo) => {
   }
 }
 
-export const deleteTodoRequest = (todo) => { return { type:todoActions.DELETE_TODO_REQUEST, todo } }
+export const deleteTodoRequest = (pocoData) => { return { type:todoActions.DELETE_TODO_REQUEST, pocoData } }
 export const deleteTodoSuccess = (message) => { return { type:todoActions.DELETE_TODO_SUCCESS, message:message } }
 export const deleteTodoFailed = (error) => { return { type:todoActions.DELETE_TODO_FAILED, error } }
 
 //Modal Popups
 export const showAddModal = () => { return { type: modalActions.SHOW_ADD_MODAL, poco: null } }
 export const hideAddModal = () => { return { type: modalActions.HIDE_ADD_MODAL } }
-export const showEditModal = (todoToEdit) => { return { type:modalActions.SHOW_EDIT_MODAL, todo:todoToEdit } }
+export const showEditModal = (pocoToEdit) => { return { type:modalActions.SHOW_EDIT_MODAL, poco:pocoToEdit } }
 export const hideEditModal = () => { return { type:modalActions.HIDE_EDIT_MODAL } }
-export const showDeleteModal = (todoToDelete) => { return { type:modalActions.SHOW_DELETE_MODAL, todo:todoToDelete } }
+export const showDeleteModal = (pocoToDelete) => { return { type:modalActions.SHOW_DELETE_MODAL, poco:pocoToDelete } }
 export const hideDeleteModal = () => { return { type:modalActions.HIDE_DELETE_MODAL } }
 export const showViewModal = (inData) => { return { type: modalActions.SHOW_VIEW_MODAL, poco: inData } }
 export const hideViewModal = () => { return { type: modalActions.HIDE_VIEW_MODAL } }
