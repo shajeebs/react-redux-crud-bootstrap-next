@@ -34,9 +34,9 @@ export default class App extends React.Component {
               <LinkContainer to="/todo">
                     <NavItem eventKey={1}>Todos</NavItem>
                   </LinkContainer>
-              {/*<LinkContainer to="/account">
-                <NavItem eventKey={1}>Accounts</NavItem>
-              </LinkContainer>*/}
+              <LinkContainer to="/bstodo">
+                <NavItem eventKey={1}>Bootstrap Todos</NavItem>
+              </LinkContainer>
             </Nav>
           </Navbar.Collapse>
         </Navbar>

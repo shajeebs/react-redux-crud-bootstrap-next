@@ -1,6 +1,6 @@
 // ./react-redux-client/src/containers/App.js
 import { connect } from 'react-redux';
-import * as appActions from '../actions/appActions';
+// import * as appActions from '../actions/appActions';
 import App from '../components/App';
 
 // map state from store to props
