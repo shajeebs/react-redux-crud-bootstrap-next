@@ -1,7 +1,5 @@
 import React from 'react';
-// import { Alert,Glyphicon,Button,Modal } from 'react-bootstrap';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
-// import TodoEditForm from './TodoEditForm';
  
 const getCaret = direction => {
     if (direction === 'asc') {
@@ -26,7 +24,7 @@ export default class BsTodos extends React.Component {
       clickToSelect:true,
       hideSelectColumn:true,
       clickToSelectAndEditCell: true,
-      onSelect:this.handleRowSelect
+      // onSelect:this.handleRowSelect
     };
     this.state = {
       //selectPocoRow:'',
@@ -36,16 +34,8 @@ export default class BsTodos extends React.Component {
     };
     this.onNavigatePage = this.onNavigatePage.bind(this);
     this.onDeleteRowItem = this.onDeleteRowItem.bind(this);
-    this.handleRowSelect = this.handleRowSelect.bind(this);
-    
     this.pocoValidator = this.pocoValidator.bind(this);
-    this.hideEditModal = this.hideEditModal.bind(this);
-    this.hideDeleteModal = this.hideDeleteModal.bind(this);
-    this.cofirmDeleteTodo = this.cofirmDeleteTodo.bind(this);
     this.handleInsertedRow = this.handleInsertedRow.bind(this);
-
-    this.savePoco = this.savePoco.bind(this);
-    this.updatePocoState = this.updatePocoState.bind(this);
   }
    onNavigatePage = (page, sizePerPage) => {
     //this.props.actions.loadAllProducts(page);
@@ -53,16 +43,8 @@ export default class BsTodos extends React.Component {
     this.setState({activePage: page});
   }
   onDeleteRowItem = (row) => {
-    console.log(row[0]);
-    console.log(this.props);
-    //this.props.mappedDeletePoco({_id:row[0]});
-  }
-  handleRowSelect(row, isSelected, e) {
-    console.log(row);
-    //console.log(this.props);
-    
-    //this.setState({selectPocoRow: row});
-    //this.setState({todoState: row});
+    // console.log(row[0]);
+    this.props.mappedDeletePoco({_id:row[0]});
   }
 
   pocoValidator = (value, row) => {
@@ -72,10 +54,10 @@ export default class BsTodos extends React.Component {
       response.notification.type = 'error';
       response.notification.msg = 'Value must be inserted';
       response.notification.title = 'Requested Value';
-    } else if (value.length < 10) {
+    } else if (value.length < 5) {
       response.isValid = false;
       response.notification.type = 'error';
-      response.notification.msg = 'Value must have 10+ characters';
+      response.notification.msg = 'Value must have 5+ characters';
       response.notification.title = 'Invalid Value';
     }
     return response;
@@ -84,45 +66,7 @@ export default class BsTodos extends React.Component {
   componentWillMount() {
     this.props.fetchAllPocos();
   }
- 
-  showEditModal(pocoToEdit){
-    if(pocoToEdit){
-      this.props.mappedshowEditModal(pocoToEdit);
-    }
-    else
-      this.props.mappedshowEditModal({name: "", comment: ""});
-  }
 
-  hideEditModal(){
-     this.props.mappedhideEditModal();
-  }
-
-  hideDeleteModal(){
-    this.props.mappedhideDeleteModal();
-  }
- 
-  showDeleteModal(pocoToDelete){
-    this.props.mappedshowDeleteModal(pocoToDelete);
-  }
- 
-  cofirmDeleteTodo(){
-    this.props.mappedDeletePoco(this.props.mappedTodoState.todoToDelete);
-  }
- 
-  updatePocoState(event) {
-    const fieldName = event.target.name;
-    const todoState = this.props.mappedTodoState;
-    const editData = todoState.todoToEdit;
-    editData[fieldName] = event.target.value;
-    return this.setState({todoState: editData});
-  }
-  
-  savePoco(event) {
-    event.preventDefault();
-    const saveData = this.props.mappedTodoState.todoToEdit;
-    if(saveData._id) { this.props.mappedEditPoco(saveData); }
-    else { this.props.mappedAddNewPoco(saveData); }
-  }
   handleInsertedRow(row) {
     console.log(row);
     this.props.mappedAddNewPoco(row);
@@ -130,6 +74,13 @@ export default class BsTodos extends React.Component {
     // if(saveData._id) { this.props.mappedEditPoco(saveData); }
     // else { this.props.mappedAddNewPoco(saveData); }
   }
+
+  handleAfterSaveCell(row, cellName, cellValue) {
+    console.log(row)
+    console.log(cellName)
+    console.log(cellValue)
+  }
+
 
   render(){
     const todoState = this.props.mappedTodoState;
@@ -140,29 +91,20 @@ export default class BsTodos extends React.Component {
       onPageChange: this.onNavigatePage,
       onDeleteRow: this.onDeleteRowItem,
       afterInsertRow: this.handleInsertedRow,
-      beforeShowError: (type, msg) => {
-        this.setState({
-          errType: type,  // return false or do not return will not trigger the toastr,
-          errMsg: msg     // if you want the toastr popup, you should return true always.
-        });
-        return false;
-      }
     };
     const cellEditProp = {
-      mode: 'click',
-      blurToSave: true
+      mode: 'dbclick',
+      blurToSave: true,
+      afterSaveCell: this.handleAfterSaveCell
     };
-// console.log(this.state);
-// console.log(this.props);
     return(
       <div>
       <h3 className="centerAlign">BsTodos</h3>
-      <p style={ { color: 'red' } }>{ `[${this.state.errType}]: ${this.state.errMsg}` }</p>
       { todoState.isFetching && <p>Loading BsTodos....</p> }
       { pocos && pocos.length <= 0 && !todoState.isFetching && <p>No BsTodos Available. Add A Todo to List here.</p> }
       { pocos && pocos.length > 0 && !todoState.isFetching &&
           <BootstrapTable 
-            data={pocos} insertRow={ true } selectRow={this.selectRowProp}
+            data={pocos} selectRow={this.selectRowProp} cellEdit={this.cellEditProp}
             fetchInfo={{dataTotalSize: pocos.resultsCount}}
             options={options} striped remote
             hover
@@ -171,11 +113,11 @@ export default class BsTodos extends React.Component {
             insertRow
             deleteRow 
             search exportCSV>
-            <TableHeaderColumn hidden dataField="_id" isKey={ true } autoValue={ false }> Id </TableHeaderColumn>
+            <TableHeaderColumn hidden dataField="_id" isKey={ true } hiddenOnInsert > Id </TableHeaderColumn>
             <TableHeaderColumn editable={ { validator: this.pocoValidator } } dataField="name"> Name </TableHeaderColumn>
             <TableHeaderColumn editable={ { validator: this.pocoValidator } } dataField="comment"> Comment </TableHeaderColumn>
-            <TableHeaderColumn dataField="created" autoValue={ false }> Created Date </TableHeaderColumn>
-            <TableHeaderColumn dataField="modified" autoValue={ false }> Modification Date
+            <TableHeaderColumn dataField="created" hiddenOnInsert > Created Date </TableHeaderColumn>
+            <TableHeaderColumn dataField="modified" hiddenOnInsert > Modification Date
             </TableHeaderColumn>
           </BootstrapTable>
     }

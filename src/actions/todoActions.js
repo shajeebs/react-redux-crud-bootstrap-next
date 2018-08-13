@@ -6,7 +6,10 @@ const apiUrl = "https://nodesmallapp.herokuapp.com/todo";
 export const addTodo = (dataToAdd) => {
   var formData = new FormData();
   for ( var key in dataToAdd ) {
-      formData.append(key, dataToAdd[key]);
+      if(!['_id', 'created', 'modified'].includes(key)){
+        console.log(`Key:${key},Value:${dataToAdd[key]}`);
+        formData.append(key, dataToAdd[key]);
+      }
   }
   return (dispatch) => {
     dispatch(addTodoRequest(dataToAdd));
