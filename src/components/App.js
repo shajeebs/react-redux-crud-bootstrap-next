@@ -17,26 +17,22 @@ export default class App extends React.Component {
           <Navbar.Collapse>
             <Nav>
               <NavDropdown eventKey={3} title="Features" id="basic-nav-dropdown">
-                <MenuItem eventKey={3.1}>
-                  <LinkContainer to="/todo">
-                    <NavItem eventKey={1}>Todos</NavItem>
-                  </LinkContainer>
-                </MenuItem>
-                <MenuItem eventKey={3.2}><LinkContainer to="/account">
-                    <NavItem eventKey={1}>Accounts</NavItem>
-                  </LinkContainer></MenuItem>
+                <LinkContainer to="/todo"><NavItem eventKey={1}>Todos</NavItem></LinkContainer>
+                <LinkContainer to="/bstodo"><NavItem eventKey={1}>Bootstrap Todos</NavItem></LinkContainer>
                 <MenuItem eventKey={3.3}>Something else here</MenuItem>
                 <MenuItem divider />
                 <MenuItem eventKey={3.4}>Separated link</MenuItem>
               </NavDropdown>
             </Nav>
+            {/*<Navbar.Form pullLeft>
+              <FormGroup>
+                <FormControl type="text" placeholder="Search" />
+              </FormGroup>{' '}
+              <Button type="submit">Submit</Button>
+            </Navbar.Form>*/}
             <Nav pullRight>
-              <LinkContainer to="/todo">
-                    <NavItem eventKey={1}>Todos</NavItem>
-                  </LinkContainer>
-              <LinkContainer to="/bstodo">
-                <NavItem eventKey={1}>Bootstrap Todos</NavItem>
-              </LinkContainer>
+                  <LinkContainer to="/todo"><NavItem eventKey={1}>Todos</NavItem></LinkContainer>
+                  <LinkContainer to="/bstodo"><NavItem eventKey={1}>Bootstrap Todos</NavItem></LinkContainer>
             </Nav>
           </Navbar.Collapse>
         </Navbar>

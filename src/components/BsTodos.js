@@ -1,18 +1,5 @@
 import React from 'react';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
- 
-const getCaret = direction => {
-    if (direction === 'asc') {
-        return ( <span> <i className="fa fa-sort-asc" aria-hidden="true"/></span> );
-    }
-    if (direction === 'desc') {
-        return ( <span> <i className="fa fa-sort-desc" aria-hidden="true"/></span> );
-    }
-    return ( <span> <i className="fa fa-sort" aria-hidden="true" /></span> );
-};
-const titleFormatter = (cell, row) => {
-  return `<a href=${row.watchHref} target="_blank">${cell}</a>`;
-};
 
 export default class BsTodos extends React.Component {
   constructor(props){
@@ -36,6 +23,8 @@ export default class BsTodos extends React.Component {
     this.onDeleteRowItem = this.onDeleteRowItem.bind(this);
     this.pocoValidator = this.pocoValidator.bind(this);
     this.handleInsertedRow = this.handleInsertedRow.bind(this);
+    this.handleAfterSaveCell = this.handleAfterSaveCell.bind(this);
+    
   }
    onNavigatePage = (page, sizePerPage) => {
     //this.props.actions.loadAllProducts(page);
@@ -70,21 +59,17 @@ export default class BsTodos extends React.Component {
   handleInsertedRow(row) {
     console.log(row);
     this.props.mappedAddNewPoco(row);
-    // const saveData = this.props.mappedTodoState.todoToEdit;
-    // if(saveData._id) { this.props.mappedEditPoco(saveData); }
-    // else { this.props.mappedAddNewPoco(saveData); }
   }
 
   handleAfterSaveCell(row, cellName, cellValue) {
-    console.log(row)
-    console.log(cellName)
-    console.log(cellValue)
+    row[cellName] = cellValue;
+    if(row && row._id) { this.props.mappedEditPoco(row); }
   }
 
 
   render(){
-    const todoState = this.props.mappedTodoState;
-    const pocos = todoState.pocos;
+    const currentPocoState = this.props.mappedPocoState;
+    const pocos = currentPocoState.pocos;
     const options = {
       hideSizePerPage: true,
       page: this.state.activePage,
@@ -95,20 +80,19 @@ export default class BsTodos extends React.Component {
     const cellEditProp = {
       mode: 'dbclick',
       blurToSave: true,
-      afterSaveCell: this.handleAfterSaveCell
+      afterSaveCell: this.handleAfterSaveCell,
+      //beforeSaveCell: this.beforeSaveCell
     };
     return(
       <div>
       <h3 className="centerAlign">BsTodos</h3>
-      { todoState.isFetching && <p>Loading BsTodos....</p> }
-      { pocos && pocos.length <= 0 && !todoState.isFetching && <p>No BsTodos Available. Add A Todo to List here.</p> }
-      { pocos && pocos.length > 0 && !todoState.isFetching &&
+      { currentPocoState.isFetching && <p>Loading BsTodos....</p> }
+      { pocos && pocos.length <= 0 && !currentPocoState.isFetching && <p>No BsTodos Available. Add A Todo to List here.</p> }
+      { pocos && pocos.length > 0 && !currentPocoState.isFetching &&
           <BootstrapTable 
-            data={pocos} selectRow={this.selectRowProp} cellEdit={this.cellEditProp}
+            data={pocos} selectRow={this.selectRowProp} cellEdit={cellEditProp}
             fetchInfo={{dataTotalSize: pocos.resultsCount}}
             options={options} striped remote
-            hover
-            condensed
             pagination
             insertRow
             deleteRow 
@@ -116,8 +100,8 @@ export default class BsTodos extends React.Component {
             <TableHeaderColumn hidden dataField="_id" isKey={ true } hiddenOnInsert > Id </TableHeaderColumn>
             <TableHeaderColumn editable={ { validator: this.pocoValidator } } dataField="name"> Name </TableHeaderColumn>
             <TableHeaderColumn editable={ { validator: this.pocoValidator } } dataField="comment"> Comment </TableHeaderColumn>
-            <TableHeaderColumn dataField="created" hiddenOnInsert > Created Date </TableHeaderColumn>
-            <TableHeaderColumn dataField="modified" hiddenOnInsert > Modification Date
+            <TableHeaderColumn dataField="created" hiddenOnInsert editable={ false }> Created Date </TableHeaderColumn>
+            <TableHeaderColumn dataField="modified" hiddenOnInsert editable={ false }> Modification Date
             </TableHeaderColumn>
           </BootstrapTable>
     }

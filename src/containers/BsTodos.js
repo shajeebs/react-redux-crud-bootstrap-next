@@ -4,7 +4,7 @@ import BsTodos from '../components/BsTodos';
 
 const mapStateToProps = (state,ownProps) => {
   return {
-    mappedTodoState: state.todoState
+    mappedPocoState: state.todoState
   }
 }
 
