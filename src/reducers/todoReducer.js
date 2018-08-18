@@ -1,4 +1,4 @@
-import { todoActions, modalActions } from '../constants/actionTypes';
+import { todoActions, modalActions } from '../types/actionTypes';
 
 const INITIAL_STATE = {
   pocos:[], poco:null, isFetching: false, error: null, successMsg:null, showDeleteModal: false,

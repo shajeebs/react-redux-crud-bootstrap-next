@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  text-align: center;color: red;
 }
 
-.centerAlign{text-align: center;vertical-align: middle;}
+.centerAlign{text-align: center;vertical-align: middle; color: greenyellow;}

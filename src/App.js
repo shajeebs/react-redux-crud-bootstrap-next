@@ -1,31 +1,21 @@
-// ./react-redux-client/src/App.js
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { Router, browserHistory } from 'react-router';
-// import PropTypes from 'prop-types';
-import { syncHistoryWithStore } from 'react-router-redux';
 import configureStore from './store/configureStore';
-import routes from './routes';
+import AppRoutes from './routes';
+
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import '../node_modules/react-bootstrap-table/dist/react-bootstrap-table.min.css';
 const store = configureStore();
-const history = syncHistoryWithStore(browserHistory, store);
 
 class App extends Component {
   render() {
     return (
       <Provider store={store}>
         <div className="content">
-          <Router history={history} routes={routes} />
+          <AppRoutes />
         </div>
       </Provider>
     );
   }
 }
-
-// App.propTypes = {
-//   store: PropTypes.object.isRequired,
-//   history: PropTypes.object.isRequired
-// }
 
 export default App;

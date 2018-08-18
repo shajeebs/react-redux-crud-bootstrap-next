@@ -17,8 +17,8 @@ export default class App extends React.Component {
           <Navbar.Collapse>
             <Nav>
               <NavDropdown eventKey={3} title="Features" id="basic-nav-dropdown">
-                <LinkContainer to="/todo"><NavItem eventKey={1}>Todos</NavItem></LinkContainer>
-                <LinkContainer to="/bstodo"><NavItem eventKey={1}>Bootstrap Todos</NavItem></LinkContainer>
+                {/*<LinkContainer to="/todo"><NavItem eventKey={1}>Todos</NavItem></LinkContainer>*/}
+                <LinkContainer to="/bs2todo"><NavItem eventKey={1}>Bootstrap Todos</NavItem></LinkContainer>
                 <MenuItem eventKey={3.3}>Something else here</MenuItem>
                 <MenuItem divider />
                 <MenuItem eventKey={3.4}>Separated link</MenuItem>
@@ -31,8 +31,8 @@ export default class App extends React.Component {
               <Button type="submit">Submit</Button>
             </Navbar.Form>*/}
             <Nav pullRight>
-                  <LinkContainer to="/todo"><NavItem eventKey={1}>Todos</NavItem></LinkContainer>
-                  <LinkContainer to="/bstodo"><NavItem eventKey={1}>Bootstrap Todos</NavItem></LinkContainer>
+                <LinkContainer to="/todo"><NavItem eventKey={1}>Todos</NavItem></LinkContainer>
+                <LinkContainer to="/bs2todo"><NavItem eventKey={1}>Bootstrap2 Todos</NavItem></LinkContainer>
             </Nav>
           </Navbar.Collapse>
         </Navbar>

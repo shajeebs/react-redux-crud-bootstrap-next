@@ -1,4 +1,4 @@
-import { todoActions, modalActions } from '../constants/actionTypes';
+import { todoActions, modalActions } from '../types/actionTypes';
 
 //const apiUrl = "http://localhost:3033/todo";
 const apiUrl = "https://nodesmallapp.herokuapp.com/todo";
